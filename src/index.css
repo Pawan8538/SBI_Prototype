@@ -1,0 +1,62 @@
+/* Tailwind base + YONO font import */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@config "../tailwind.config.js";
+
+/* ── Touch-style feel: custom circle cursor ── */
+@layer base {
+  * {
+    cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30"><circle cx="15" cy="15" r="10" fill="rgba(0,0,0,0.3)"/></svg>') 15 15, auto !important;
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  /* Active press darkens instantly like a native tap */
+  button:active,
+  [role="button"]:active {
+    filter: brightness(0.88);
+    transition: filter 0ms;
+  }
+}
+
+/* ── Log entry fade-in (stateless CSS streaming) ── */
+@keyframes logFadeIn {
+  from { opacity: 0; transform: translateX(-6px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ── Hide scrollbar visually while still scrollable ── */
+.scrollbar-hide {
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;   /* IE/Edge */
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari/Opera */
+}
+
+/* ── Ripple animation ── */
+@keyframes ripple {
+  0%   { transform: scale(0);   opacity: 0.55; }
+  100% { transform: scale(4);   opacity: 0; }
+}
+
+.touch-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.touch-ripple::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.55) 0%, transparent 70%);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.touch-ripple:active::after {
+  animation: ripple 350ms ease-out forwards;
+}

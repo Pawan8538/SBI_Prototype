@@ -1,0 +1,14 @@
+{
+  "user_id": "bhavya-chandra-001",
+  "full_name": "Bhavya Chandra",
+  "account_number": "XXXXXXXX8202",
+  "account_number_full": "30458290778202",
+  "phone_masked": "XXXXXX2243",
+  "balance": 98.55,
+  "health_score": 67,
+  "life_event_tags": ["school_fees_upcoming", "salary_received"],
+  "branch": "SBI Hyderabad Main",
+  "ifsc": "SBIN0001234",
+  "nominee": "Sunita Chandra",
+  "savings_goal": 10000
+}
