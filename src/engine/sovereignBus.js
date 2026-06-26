@@ -9,7 +9,7 @@ export const PRODUCT_MAP = {
     product: 'PPF',
     full_name: 'Public Provident Fund',
     action: 'Auto-Allocate ₹5,000',
-    icon: '🏛️',
+    icon: 'Landmark',
     interest_rate: '7.1% p.a.',
     backed_by: 'Government of India',
     rationale:
@@ -24,7 +24,7 @@ export const PRODUCT_MAP = {
     product: 'SGB',
     full_name: 'Sovereign Gold Bond',
     action: 'Buy 1g Gold Bond',
-    icon: '🥇',
+    icon: 'Coins',
     interest_rate: '2.5% + gold appreciation',
     backed_by: 'Reserve Bank of India',
     rationale:
@@ -39,7 +39,7 @@ export const PRODUCT_MAP = {
     product: 'SSY',
     full_name: 'Sukanya Samriddhi Yojana',
     action: 'Transfer ₹2,000 to SSY',
-    icon: '👧',
+    icon: 'Baby',
     interest_rate: '8.2% p.a.',
     backed_by: 'Ministry of Finance',
     rationale:
@@ -54,7 +54,7 @@ export const PRODUCT_MAP = {
     product: 'PPF',
     full_name: 'Public Provident Fund',
     action: 'Start ₹500/month PPF SIP',
-    icon: '🏛️',
+    icon: 'Landmark',
     interest_rate: '7.1% p.a.',
     backed_by: 'Government of India',
     rationale:
@@ -69,7 +69,7 @@ export const PRODUCT_MAP = {
     product: 'SGB',
     full_name: 'Sovereign Gold Bond',
     action: 'Buy 2g Gold Bond',
-    icon: '🥇',
+    icon: 'Coins',
     interest_rate: '2.5% + gold appreciation',
     backed_by: 'Reserve Bank of India',
     rationale:

@@ -1,20 +1,30 @@
-import React from 'react';
-import { LOG_SEQUENCE } from '../../engine/logMessages';
+import React, { useEffect, useRef } from 'react';
+import { useApp } from '../../store/AppContext';
+import { ACTIONS } from '../../store/appReducer';
 
 /**
- * AgentLogPanel — STATELESS, zero timers, zero scrollTop.
- *
- * Uses CSS animation-delay to stagger each log entry appearance.
- * Container does NOT use column-reverse — instead, it starts scrolled
- * to the bottom via a CSS trick: the inner div uses padding-top that
- * equals the gap between content and container, so content starts visible at top,
- * and as items appear they push the view down naturally.
- *
- * Simpler: just render oldest-first, let them fill from the top.
- * The container is tall enough to show ~8 items at once. The first 8 are
- * immediately visible, the rest require scrolling — which is correct behaviour.
+ * AgentLogPanel — color-coded log lines from central state.
+ * Auto-scrolls to bottom on new entries.
+ * Tracks "last sync" counter.
  */
 export default function AgentLogPanel() {
+  const { state, dispatch } = useApp();
+  const logEndRef = useRef(null);
+  const syncIntervalRef = useRef(null);
+
+  // Auto-scroll to bottom on new lines
+  useEffect(() => {
+    logEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [state.logLines]);
+
+  // Last sync counter — increments every second
+  useEffect(() => {
+    syncIntervalRef.current = setInterval(() => {
+      dispatch({ type: ACTIONS.SET_SYNC_SECONDS, payload: state.lastSyncSeconds + 1 });
+    }, 1000);
+    return () => clearInterval(syncIntervalRef.current);
+  }, [state.lastSyncSeconds]);
+
   return (
     <div className="flex flex-col h-full min-h-0">
 
@@ -29,35 +39,28 @@ export default function AgentLogPanel() {
         </span>
       </div>
 
-      {/*
-        Scroll container — renders all entries, oldest at top, newest at bottom.
-        Entries fade in via CSS animation-delay so they appear to "stream" in.
-        No JS needed. No scrollTop. Logs L1-L5 are visible immediately at top.
-      */}
+      {/* Log lines from central state — color-coded */}
       <div className="flex-1 min-h-0 overflow-y-auto scrollbar-hide bg-gray-950 px-3 py-2">
         <div className="font-mono text-[11px] space-y-1">
-          {LOG_SEQUENCE.map((log, i) => {
-            const totalSec = i * 0.8;
-            const mm = String(Math.floor(totalSec / 60)).padStart(2, '0');
-            const ss = String(Math.floor(totalSec % 60)).padStart(2, '0');
-            return (
-              <div
-                key={i}
-                className="flex gap-2 leading-5"
-                style={{
-                  opacity: 0,
-                  animation: `logFadeIn 0.35s ease-out ${(i * 0.8).toFixed(2)}s forwards`,
-                }}
-              >
-                <span className="text-gray-600 shrink-0 tabular-nums">{mm}:{ss}</span>
-                <span className={`shrink-0 ${log.color}`} style={{ minWidth: '84px' }}>
-                  {log.layer}&nbsp;{log.label}
-                </span>
-                <span className="text-gray-600 shrink-0">—</span>
-                <span className="text-gray-300 break-words min-w-0">{log.message}</span>
-              </div>
-            );
-          })}
+          {state.logLines.length === 0 && (
+            <div className="text-gray-600 text-center py-8">
+              Awaiting screen navigation to begin agent processing...
+            </div>
+          )}
+          {state.logLines.map((line) => (
+            <div
+              key={line.id}
+              className="flex gap-2 leading-5"
+              style={{ animation: 'logFadeIn 0.35s ease-out forwards' }}
+            >
+              <span className="text-gray-600 shrink-0 tabular-nums">{line.timestamp}</span>
+              <span className={`shrink-0 font-semibold ${line.color}`} style={{ minWidth: '72px' }}>
+                [{line.layer}]
+              </span>
+              <span className="text-gray-300 break-words min-w-0">{line.message}</span>
+            </div>
+          ))}
+          <div ref={logEndRef} />
         </div>
       </div>
     </div>

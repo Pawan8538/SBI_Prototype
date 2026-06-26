@@ -1,0 +1,44 @@
+[
+  {
+    "id": "PPF",
+    "name": "Public Provident Fund",
+    "icon": "Landmark",
+    "rate": "7.1% p.a.",
+    "tenor": "15 years",
+    "minAmount": 500,
+    "maxAmount": 150000,
+    "tag": "Tax-Free | Gov. Guaranteed",
+    "matchedEvent": "school_fees_upcoming",
+    "astraReason": "15-year horizon matches upcoming education planning needs",
+    "recommendedAmount": 5000,
+    "isRecommended": true
+  },
+  {
+    "id": "SGB",
+    "name": "Sovereign Gold Bond",
+    "icon": "Coins",
+    "rate": "8.05% p.a.",
+    "tenor": "8 years",
+    "minAmount": 1000,
+    "maxAmount": 500000,
+    "tag": "Inflation Hedge | Gov. Guaranteed",
+    "matchedEvent": "salary_received",
+    "astraReason": "Surplus income is ideal for inflation-protected sovereign bonds",
+    "recommendedAmount": 3000,
+    "isRecommended": false
+  },
+  {
+    "id": "SSY",
+    "name": "Sukanya Samriddhi Yojana",
+    "icon": "Baby",
+    "rate": "8.2% p.a.",
+    "tenor": "21 years",
+    "minAmount": 250,
+    "maxAmount": 150000,
+    "tag": "Girl Child | Tax-Free",
+    "matchedEvent": "family_event",
+    "astraReason": "Highest government rate for long-term family security",
+    "recommendedAmount": 2000,
+    "isRecommended": false
+  }
+]

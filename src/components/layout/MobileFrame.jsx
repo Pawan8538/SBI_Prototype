@@ -18,7 +18,7 @@ export default function MobileFrame({ children, overlay }) {
       className="relative shrink-0 bg-white rounded-[36px] shadow-2xl border-[8px] border-gray-900 flex flex-col overflow-hidden w-full h-full"
     >
       {/* ── Status Bar ── */}
-      <div className="w-full bg-yono-purple flex items-center justify-between px-5 text-[11px] text-white shrink-0 py-[6px]">
+      <div className="w-full bg-white flex items-center justify-between px-5 text-[11px] text-gray-800 shrink-0 py-[6px]">
         <span className="font-medium">9:41</span>
         <div className="flex items-center gap-1.5">
           <span>▲▼</span>

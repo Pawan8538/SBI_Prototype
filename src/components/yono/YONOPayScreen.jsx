@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { X, User, ChevronDown, EyeOff } from 'lucide-react';
+import { ArrowLeft, User, ChevronDown, EyeOff } from 'lucide-react';
 
 export default function YONOPayScreen({ onBack, onPay }) {
   return (
-    <div className="h-full bg-white flex flex-col overflow-y-auto pb-10">
+    <div className="h-full bg-white flex flex-col overflow-y-auto pb-10 scrollbar-hide">
       
       {/* Header */}
       <div className="bg-gradient-to-r from-[#902462] to-[#3a0868] text-white px-4 py-3 flex items-center justify-between shrink-0">
-        <div className="font-medium text-lg tracking-wide">YONO Pay</div>
-        <button onClick={onBack} className="p-1 border border-white/30 rounded-full">
-          <X size={16} className="text-white/70" />
-        </button>
+        <div className="flex items-center gap-3">
+          <button onClick={onBack} className="p-1 active:bg-white/10 rounded-full transition-colors">
+            <ArrowLeft size={20} className="text-white" />
+          </button>
+          <div className="font-medium text-lg tracking-wide">YONO Pay</div>
+        </div>
       </div>
 
       <div className="p-4 flex-1">

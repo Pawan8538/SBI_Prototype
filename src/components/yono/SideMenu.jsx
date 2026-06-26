@@ -1,15 +1,26 @@
 import React from 'react';
-import { X, User, Home, Vault, Banknote, LineChart, Umbrella, ShoppingCart, CreditCard, Bell, Phone } from 'lucide-react';
+import { useApp } from '../../store/AppContext';
+import { ACTIONS } from '../../store/appReducer';
+import { X, User, Home, Vault, Banknote, LineChart, Bell, CreditCard } from 'lucide-react';
 
 export default function SideMenu({ onClose }) {
+  const { dispatch } = useApp();
+
   const menuItems = [
-    { icon: Home, label: 'Home' },
-    { icon: Banknote, label: 'YONO Pay' },
-    { icon: Vault, label: 'Deposits' },
-    { icon: LineChart, label: 'Investments' },
-    { icon: Banknote, label: 'Loans' },
-    { icon: Bell, label: 'Service Request' },
+    { icon: Home, label: 'Home', screen: 'home' },
+    { icon: Banknote, label: 'YONO Pay', screen: 'pay' },
+    { icon: Vault, label: 'Deposits', screen: 'deposits' },
+    { icon: LineChart, label: 'Investments', screen: 'investments' },
+    { icon: CreditCard, label: 'Loans', screen: 'loans' },
   ];
+
+  const handleNav = (screen) => {
+    if (!screen) return;
+    dispatch({ type: ACTIONS.SET_SCREEN, payload: screen });
+    dispatch({ type: ACTIONS.CLOSE_MENU });
+    dispatch({ type: ACTIONS.HIDE_INTERCEPT });
+    dispatch({ type: ACTIONS.CLEAR_LOGS });
+  };
 
   return (
     <div className="absolute inset-0 z-50 flex">
@@ -27,7 +38,11 @@ export default function SideMenu({ onClose }) {
         {/* Menu Items */}
         <div className="flex-1 overflow-y-auto pb-4">
           {menuItems.map((item, index) => (
-            <button key={index} className="w-full px-5 py-3.5 flex items-center justify-between border-b border-gray-100 active:bg-gray-50">
+            <button
+              key={index}
+              onClick={() => handleNav(item.screen)}
+              className="w-full px-5 py-3.5 flex items-center justify-between border-b border-gray-100 active:bg-gray-50"
+            >
               <div className="flex items-center gap-4 text-gray-800">
                 <item.icon size={20} className="text-[#a1688d]" strokeWidth={1.5} />
                 <span className="text-sm font-semibold">{item.label}</span>
@@ -46,7 +61,6 @@ export default function SideMenu({ onClose }) {
       
       {/* Overlay backdrop */}
       <div className="flex-1 bg-black/50" onClick={onClose}>
-        {/* hamburger menu background mock */}
         <div className="bg-gray-200 h-12 w-full flex items-center justify-center opacity-0">
            <X size={24} className="text-black" />
         </div>

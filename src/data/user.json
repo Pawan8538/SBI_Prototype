@@ -6,7 +6,33 @@
   "phone_masked": "XXXXXX2243",
   "balance": 98.55,
   "health_score": 67,
-  "life_event_tags": ["school_fees_upcoming", "salary_received"],
+  "health_score_post_action": 74,
+  "life_events": [
+    {
+      "id": "school_fees_upcoming",
+      "label": "School Fees",
+      "icon": "GraduationCap",
+      "detail": "₹8,500 × 2",
+      "subtext": "In 42 days",
+      "severity": "high"
+    },
+    {
+      "id": "salary_received",
+      "label": "Salary",
+      "icon": "Briefcase",
+      "detail": "₹58,000 × 4",
+      "subtext": "Infosys credit",
+      "severity": "positive"
+    },
+    {
+      "id": "emi_active",
+      "label": "EMI Active",
+      "icon": "Building",
+      "detail": "₹18,500/mo",
+      "subtext": "HDFC recurring",
+      "severity": "medium"
+    }
+  ],
   "branch": "SBI Hyderabad Main",
   "ifsc": "SBIN0001234",
   "nominee": "Sunita Chandra",
