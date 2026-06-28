@@ -12,6 +12,8 @@ import React from 'react';
  * The overlay layer sits on top of the scroll content but is NOT inside it,
  * so overlays can never affect scrollHeight or trigger auto-scroll.
  */
+import VoiceAssistantOverlay from '../yono/VoiceAssistantOverlay';
+
 export default function MobileFrame({ children, overlay }) {
   return (
     <div
@@ -38,13 +40,16 @@ export default function MobileFrame({ children, overlay }) {
 
       {/* ── Overlay Layer (absolute, above content, NOT inside scroll area) ── */}
       {overlay && (
-        <div className="absolute inset-0 top-8 pointer-events-none z-50">
+        <div className="absolute inset-0 top-8 pointer-events-none z-40">
           {/* pointer-events-auto re-enabled on each child via the overlay components themselves */}
           <div className="relative w-full h-full pointer-events-none">
             {overlay}
           </div>
         </div>
       )}
+
+      {/* ── Voice Assistant Global Overlay ── */}
+      <VoiceAssistantOverlay />
     </div>
   );
 }

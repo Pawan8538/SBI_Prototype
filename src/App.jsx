@@ -11,6 +11,9 @@ import TransactionSuccess from './components/yono/TransactionSuccess';
 import DepositsScreen from './components/yono/DepositsScreen';
 import InvestmentsScreen from './components/yono/InvestmentsScreen';
 import LoansScreen from './components/yono/LoansScreen';
+import GoalsScreen from './components/yono/GoalsScreen';
+import FinancialTwinScreen from './components/yono/FinancialTwinScreen';
+import BudgetCoachScreen from './components/yono/BudgetCoachScreen';
 
 import InterceptCard from './components/astra/InterceptCard';
 import ContextTerminal from './components/astra/ContextTerminal';
@@ -133,12 +136,7 @@ function App() {
         return (
           <HomeScreen
             onMenuClick={() => dispatch({ type: ACTIONS.TOGGLE_MENU })}
-            onNavigate={(tile) => {
-              if (tile === 'pay') navigateTo('pay');
-              else if (tile === 'deposits') navigateTo('deposits');
-              else if (tile === 'investments') navigateTo('investments');
-              else if (tile === 'loans') navigateTo('loans');
-            }}
+            onNavigate={(tile) => navigateTo(tile)}
           />
         );
       case 'pay':
@@ -151,8 +149,14 @@ function App() {
         return <InvestmentsScreen />;
       case 'loans':
         return <LoansScreen />;
+      case 'goals':
+        return <GoalsScreen onBack={() => navigateTo('home')} />;
+      case 'twin':
+        return <FinancialTwinScreen onBack={() => navigateTo('home')} />;
+      case 'budget':
+        return <BudgetCoachScreen onBack={() => navigateTo('home')} />;
       default:
-        return <HomeScreen onMenuClick={() => dispatch({ type: ACTIONS.TOGGLE_MENU })} onNavigate={() => {}} />;
+        return <HomeScreen onMenuClick={() => dispatch({ type: ACTIONS.TOGGLE_MENU })} onNavigate={(screen) => navigateTo(screen)} />;
     }
   };
 

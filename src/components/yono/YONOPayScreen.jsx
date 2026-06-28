@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { ArrowLeft, User, ChevronDown, EyeOff } from 'lucide-react';
+import { useApp } from '../../store/AppContext';
 
 export default function YONOPayScreen({ onBack, onPay }) {
+  const { state } = useApp();
   return (
     <div className="h-full bg-white flex flex-col overflow-y-auto pb-10 scrollbar-hide">
       
@@ -43,7 +45,7 @@ export default function YONOPayScreen({ onBack, onPay }) {
             <span className="text-sm text-gray-700">SB A/c - XXXXXXX8202</span>
             <ChevronDown size={20} className="text-gray-400" />
           </div>
-          <div className="text-xs text-gray-600">Available Balance - ₹ 99.55</div>
+          <div className="text-xs text-gray-600">Available Balance - ₹ {state.accountBalance.toLocaleString()}</div>
         </div>
 
         {/* Amount */}

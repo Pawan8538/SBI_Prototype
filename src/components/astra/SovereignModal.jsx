@@ -198,6 +198,7 @@ function ValidatingView() {
       dispatch({ type: ACTIONS.SET_MODAL_STEP, payload: 'success' });
       dispatch({ type: ACTIONS.ADD_LOG_LINES, payload: AUTORUN_LOGS() });
       dispatch({ type: ACTIONS.SET_ALLOCATION_COMPLETE, payload: true });
+      dispatch({ type: ACTIONS.DEBIT_ACCOUNT, payload: state.allocatedAmount || 5000 });
       dispatch({ type: ACTIONS.SET_ALERT_COUNT, payload: 0 });
       dispatch({ type: ACTIONS.SET_HEALTH_SCORE, payload: 74 });
     }, 2200));

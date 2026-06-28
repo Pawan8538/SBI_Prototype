@@ -24,6 +24,10 @@ export const ACTIONS = {
   SET_HAS_STARTED: 'SET_HAS_STARTED',
   SET_AUTO_QUERY: 'SET_AUTO_QUERY',
   SET_ALLOCATED_AMOUNT: 'SET_ALLOCATED_AMOUNT',
+  SET_LISTENING: 'SET_LISTENING',
+  SET_VOICE_TRANSCRIPT: 'SET_VOICE_TRANSCRIPT',
+  SET_VOICE_RESPONSE: 'SET_VOICE_RESPONSE',
+  DEBIT_ACCOUNT: 'DEBIT_ACCOUNT',
 };
 
 export function appReducer(state, action) {
@@ -113,6 +117,18 @@ export function appReducer(state, action) {
 
     case ACTIONS.SET_ALLOCATED_AMOUNT:
       return { ...state, allocatedAmount: action.payload };
+
+    case ACTIONS.SET_LISTENING:
+      return { ...state, isListening: action.payload };
+
+    case ACTIONS.SET_VOICE_TRANSCRIPT:
+      return { ...state, voiceTranscript: action.payload };
+
+    case ACTIONS.SET_VOICE_RESPONSE:
+      return { ...state, voiceResponse: action.payload };
+      
+    case 'DEBIT_ACCOUNT':
+      return { ...state, accountBalance: state.accountBalance - action.payload };
 
     default:
       return state;

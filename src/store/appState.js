@@ -41,4 +41,12 @@ export const INITIAL_STATE = {
 
   // App started flag
   hasStarted: false,
+
+  // Voice Assistant
+  isListening: false,
+  voiceTranscript: '',
+  voiceResponse: '',
+  
+  // Unified Account Balance
+  accountBalance: 45200,
 };

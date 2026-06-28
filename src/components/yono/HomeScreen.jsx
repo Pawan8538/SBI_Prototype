@@ -4,7 +4,7 @@ import { ACTIONS } from '../../store/appReducer';
 import YONOHeader from '../layout/YONOHeader';
 import HealthScoreBadge from '../astra/HealthScoreBadge';
 import LifeEventTags from '../astra/LifeEventTags';
-import { Search, Banknote, Landmark, PiggyBank, TrendingUp, HandCoins, ShoppingCart, FileText, Car, TrainFront } from 'lucide-react';
+import { Search, Banknote, Landmark, PiggyBank, TrendingUp, HandCoins, ShoppingCart, FileText, Car, TrainFront, Target, Activity, PieChart, Gift } from 'lucide-react';
 
 function Tile({ icon: Icon, label, onClick, isRightBorder }) {
   return (
@@ -20,11 +20,11 @@ function Tile({ icon: Icon, label, onClick, isRightBorder }) {
   );
 }
 
-function SquareCard({ icon: Icon, label }) {
+function SquareCard({ icon: Icon, label, onClick }) {
   return (
     <button
       className="flex flex-col items-center justify-center p-2 bg-white rounded-lg border border-gray-200 shadow-sm active:bg-gray-50 aspect-square"
-      onClick={() => alert("Coming soon!")}
+      onClick={onClick || (() => alert("Coming soon!"))}
     >
       <Icon className="w-5 h-5 mb-1" style={{ stroke: 'url(#yonoGradient)', strokeWidth: 1.5 }} />
       <span className="text-[9px] text-gray-700 font-medium text-center leading-tight">{label}</span>
@@ -97,12 +97,12 @@ export default function HomeScreen({ onMenuClick, onNavigate }) {
           </div>
         </div>
 
-        {/* Secondary Grid (4 Square Cards) */}
+        {/* AI Financial Features Grid */}
         <div className="mx-4 mb-4 grid grid-cols-4 gap-2">
-          <SquareCard icon={ShoppingCart} label="Shop & Order" />
-          <SquareCard icon={FileText} label="Bill Payment" />
-          <SquareCard icon={Car} label="Mobility" />
-          <SquareCard icon={TrainFront} label="Train Ticket" />
+          <SquareCard icon={Target} label="Smart Goals" onClick={() => onNavigate('goals')} />
+          <SquareCard icon={Activity} label="Digital Twin" onClick={() => onNavigate('twin')} />
+          <SquareCard icon={PieChart} label="Budget Coach" onClick={() => onNavigate('budget')} />
+          <SquareCard icon={Gift} label="Rewards" />
         </div>
 
         {/* Life Event Tags */}
